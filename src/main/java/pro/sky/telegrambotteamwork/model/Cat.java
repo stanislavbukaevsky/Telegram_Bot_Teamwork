@@ -5,14 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
+import java.io.File;
 
 
+@Entity
 @Getter
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-
-@Entity
+@Table(name = "Cat")
 public class Cat {
 
     @Id
@@ -22,5 +23,5 @@ public class Cat {
     private String name;  // имя
     private int yearOfBirth; // дата рождения
     private String description; // описание
-
+    private File photo;
 }
