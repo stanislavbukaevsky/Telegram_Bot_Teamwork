@@ -10,6 +10,7 @@ import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.SendResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -23,7 +24,8 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     // Объявление и инициализация логгера, для отслеживания событий
     private final Logger logger = LoggerFactory.getLogger(TelegramBotUpdatesListener.class);
     // Объявление класса TelegramBot
-    private final TelegramBot telegramBot;
+    @Autowired
+    private  TelegramBot telegramBot;
 
     // Инжекция класса TelegramBot (объявление конструктора)
     public TelegramBotUpdatesListener(TelegramBot telegramBot) {
