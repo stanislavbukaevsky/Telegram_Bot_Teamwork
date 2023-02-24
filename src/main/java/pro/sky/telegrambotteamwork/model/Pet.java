@@ -7,13 +7,15 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.File;
 
-
-@Entity
 @Getter
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 @Table(name = "Pet")
+/**
+ * Класс с сущностью домашнего питомца
+ */
+@Entity
 public class Pet {
 
     @Id
