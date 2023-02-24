@@ -1,4 +1,5 @@
 package pro.sky.telegrambotteamwork.model;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -6,14 +7,16 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.File;
 
-
-@Entity
 @Getter
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-@Table(name = "Dog")
-public class Dog {
+@Table(name = "Pet")
+/**
+ * Класс с сущностью домашнего питомца
+ */
+@Entity
+public class Pet {
 
     @Id
     @GeneratedValue
