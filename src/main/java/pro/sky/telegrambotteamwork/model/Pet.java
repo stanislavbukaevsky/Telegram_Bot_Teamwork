@@ -1,4 +1,5 @@
 package pro.sky.telegrambotteamwork.model;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,8 +13,8 @@ import java.io.File;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-@Table(name = "Dog")
-public class Dog {
+@Table(name = "Pet")
+public class Pet {
 
     @Id
     @GeneratedValue
