@@ -1,4 +1,4 @@
-package pro.sky.telegrambotteamwork.entitys;
+package pro.sky.telegrambotteamwork.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
