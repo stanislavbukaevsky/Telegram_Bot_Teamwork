@@ -4,17 +4,17 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import javax.persistence.*;
 
-@Getter
-@Setter
-@EqualsAndHashCode
-@NoArgsConstructor
-@Table(name = "User")
+import javax.persistence.*;
 
 /**
  * Класс с сущностью пользователя ботом
  */
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
+@Table(name = "users")
 @Entity
 public class User {
     @Id

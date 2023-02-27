@@ -4,17 +4,18 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.File;
 
+/**
+ * Класс с сущностью домашнего питомца
+ */
 @Getter
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-@Table(name = "Pet")
-/**
- * Класс с сущностью домашнего питомца
- */
+@Table(name = "pet")
 @Entity
 public class Pet {
 
