@@ -19,4 +19,9 @@ public class PetService {
         logger.info("Was invoked method for add new pet");
         return petRepository.save(pet);
     }
+
+    public Pet updatePet(Pet pet) {
+        logger.info("Was invoked method for update student");
+        return petRepository.save(pet);
+    }
 }
