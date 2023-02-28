@@ -78,4 +78,11 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
         SendResponse sendResponse = telegramBot.execute(sendMessage);
     }
+
+    //отправка сообщений в ТГ Бот
+    public void sendMessage(long chatId, String text) {
+        SendMessage message = new SendMessage(chatId, text);
+        telegramBot.execute(message);
+    }
+
 }
