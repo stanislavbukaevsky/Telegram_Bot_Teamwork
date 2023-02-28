@@ -9,14 +9,12 @@ import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.SendResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
 
-import static pro.sky.telegrambotteamwork.constants.UserRequestConstant.START;
-import static pro.sky.telegrambotteamwork.constants.UserRequestConstant.WELCOME_MESSAGE;
+import static pro.sky.telegrambotteamwork.constants.UserRequestConstant.*;
 
 /**
  * Основной класс с логикой телеграм-бота.
@@ -48,18 +46,25 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
      */
     @Override
     public int process(List<Update> updates) {
+
         updates.forEach(update -> {
             logger.info("Запрос от пользователя: {}", update);
             String message = update.message().text();
             long chatId = update.message().chat().id();
             String name = update.message().chat().firstName();
             long userId = update.message().from().id();
-
+//            if (update.message().photo().){
+//
+//            }
             switch (message) {
                 case START:
                     sendMessageKeyboard(chatId, "Здравствуйте " + name + "! " + WELCOME_MESSAGE);
                     break;
+                default:
+                    SendMessage errorMessage = new SendMessage(update.message().chat().id(), ERROR_MESSAGE);
+                    telegramBot.execute(errorMessage);
             }
+
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
