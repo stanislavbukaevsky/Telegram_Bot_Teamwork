@@ -10,6 +10,7 @@ import com.pengrad.telegrambot.response.SendResponse;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pro.sky.telegrambotteamwork.model.User;
 import pro.sky.telegrambotteamwork.repositories.UserRepository;
