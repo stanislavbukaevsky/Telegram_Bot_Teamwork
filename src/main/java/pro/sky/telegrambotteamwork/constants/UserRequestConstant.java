@@ -1,11 +1,12 @@
 package pro.sky.telegrambotteamwork.constants;
 
+
 /**
  * Класс, с константными переменными
  */
 public class UserRequestConstant {
     // Константная переменная, которая выводит приветственное сообщение пользователю
-    public static final String WELCOME_MESSAGE = "Мы приют для бездомных животных \"ЗООПОМОЩЬ\", расположенный в городе Астане. Мы хотим помочь людям, которые задумываются о том, чтобы забрать собаку или кошку домой. Что вы хотите узнать?";
+    public static final String WELCOME_MESSAGE = "Мы приют для бездомных животных \"ЗООПОМОЩЬ\", расположенный в городе Астане. Мы хотим помочь людям, которые задумываются о том, чтобы забрать собаку или кошку домой. Для связи с вами введите ваш номер телефона и нажмите отправить.";
     public static final String DATING_RULES = "Бот может выдать правила знакомства с собакой до того, как можно забрать ее из приюта.";
     public static final String LIST_OF_DOCUMENTS = "Бот может выдать список документов, необходимых для того, чтобы взять собаку из приюта.";
     public static final String LIST_OF_RECOMMENDATIONS_FOR_TRANSPORTATION = "Бот может выдать список рекомендаций по транспортировке животного.";
@@ -17,5 +18,10 @@ public class UserRequestConstant {
     public static final String REASONS_FOR_REFUSAL = "Бот может выдать список причин, почему могут отказать и не дать забрать собаку из приюта. ";
     // Команды боту
     public static final String START = "/start";
+    public static final String MENU = "/menu";
+    public static final String INFORMATION_ABOUT_THE_SHELTER = "Узнать информацию о приюте";
+    public static final String TAKE_A_PET_FROM_A_SHELTER = "Как взять питомца из приюта";
+    public static final String PET_REPORT = "Прислать отчет о питомце";
+    public static final String CALL_A_VOLUNTEER = "Позвать волонтера";
 
 }
