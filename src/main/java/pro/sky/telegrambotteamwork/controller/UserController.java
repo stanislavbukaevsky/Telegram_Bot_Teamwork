@@ -3,7 +3,6 @@ package pro.sky.telegrambotteamwork.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pro.sky.telegrambotteamwork.model.User;
-import pro.sky.telegrambotteamwork.repository.UserRepository;
 import pro.sky.telegrambotteamwork.service.UserService;
 
 @RestController
@@ -12,11 +11,9 @@ import pro.sky.telegrambotteamwork.service.UserService;
 public class UserController {
 
     private final UserService userService;
-    private final UserRepository userRepository;
 
-    public UserController(UserService userService, UserRepository userRepository) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.userRepository = userRepository;
     }
 
     @GetMapping("{id}")
