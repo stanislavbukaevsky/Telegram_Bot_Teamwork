@@ -7,15 +7,12 @@ CREATE TABLE notification_task
     chatId   INT,
     message  CHARACTER,
     timeDate CHARACTER
-)
+);
 
 --changeset sbukaevsky:2
-DROP TABLE notification_task;
-
---changeset sbukaevsky:3
 CREATE TABLE users
 (
-    id        SERIAL,
+    id        BIGINT,
     user_name TEXT,
     user_id   BIGINT,
     phone     TEXT
@@ -45,3 +42,12 @@ create table reportData
     lastMessage date                not null,
     data        bytea               not null
 );
+--changeset olgakargan:3
+CREATE TABLE pet
+(
+    id              BIGINT,
+    breed           TEXT,
+    pet_name        TEXT,
+    year_of_birth   INT,
+    description     TEXT
+)
