@@ -7,9 +7,12 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.SendResponse;
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import pro.sky.telegrambotteamwork.model.User;
+import pro.sky.telegrambotteamwork.repositories.UserRepository;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -21,13 +24,11 @@ import static pro.sky.telegrambotteamwork.constants.UserRequestConstant.*;
  * Этот класс расширяет {@link UpdatesListener}
  */
 @Service
+@Data
 public class TelegramBotUpdatesListener implements UpdatesListener {
     private final Logger logger = LoggerFactory.getLogger(TelegramBotUpdatesListener.class);
     private final TelegramBot telegramBot;
-
-    public TelegramBotUpdatesListener(TelegramBot telegramBot) {
-        this.telegramBot = telegramBot;
-    }
+    private final UserRepository userRepository;
 
     /**
      * Метод, который вызывается сразу после инициализации свойств
@@ -46,42 +47,62 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
      */
     @Override
     public int process(List<Update> updates) {
-
         updates.forEach(update -> {
             logger.info("Запрос от пользователя: {}", update);
             String message = update.message().text();
             long chatId = update.message().chat().id();
             String name = update.message().chat().firstName();
             long userId = update.message().from().id();
-//            if (update.message().photo().){
-//
-//            }
-            switch (message) {
-                case START:
-                    sendMessageKeyboard(chatId, "Здравствуйте " + name + "! " + WELCOME_MESSAGE);
-                    break;
-                default:
-                    SendMessage errorMessage = new SendMessage(update.message().chat().id(), ERROR_MESSAGE);
-                    telegramBot.execute(errorMessage);
-            }
 
+            switch (message) {
+                case START: {
+                    sendMessage(chatId, "Здравствуйте " + name + "! " + WELCOME_MESSAGE);
+                    break;
+                }
+                case MENU: {
+                    SendMessage sendMessage = new SendMessage(chatId, "Выберите из списка, что вы хотите узнать.")
+                            .replyMarkup(new ReplyKeyboardMarkup(new String[][]{
+                                    {INFORMATION_ABOUT_THE_SHELTER, TAKE_A_PET_FROM_A_SHELTER},
+                                    {PET_REPORT, CALL_A_VOLUNTEER}
+                            }).resizeKeyboard(true));
+                    telegramBot.execute(sendMessage);
+                    break;
+                }
+                case INFORMATION_ABOUT_THE_SHELTER: {
+                    sendMessage(chatId, "Здесь будет информация о приюте");
+                    break;
+                }
+                case TAKE_A_PET_FROM_A_SHELTER: {
+                    sendMessage(chatId, "Здесь будет информация как взять питомца из приюта");
+                    break;
+                }
+                case PET_REPORT: {
+                    sendMessage(chatId, "Здесь будет информация о том, как прислать отчет о питомце");
+                    break;
+                }
+                case CALL_A_VOLUNTEER: {
+                    sendMessage(chatId, "Здесь будет информация о том, как позвать волонтера");
+                    break;
+                }
+            }
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
 
     /**
-     * Метод, который выводит сообщения пользователю и кнопки команд
+     * Метод, который сохраняет пользователя в базу данных
      *
-     * @param chatId  Идентификатор чата
-     * @param message Сообщение пользователя
+     * @param name   Имя пользователя
+     * @param userId Идентификатор пользователя
      */
-    private void sendMessageKeyboard(long chatId, String message) {
-        SendMessage sendMessage = new SendMessage(chatId, message);
-        sendMessage.replyMarkup(new ReplyKeyboardMarkup(new String[][]{
-                {"Узнать информацию о приюте", "Как взять собаку из приюта"},
-                {"Прислать отчет о питомце", "Позвать волонтера"}
-        }).resizeKeyboard(true));
+    private void saveUser(String name, long userId) {
+        User user = new User();
+        user.setUserName(name);
+        user.setUserId(userId);
+        userRepository.save(user);
+    }
 
-        SendResponse sendResponse = telegramBot.execute(sendMessage);
+    private void sendMessage(long chatId, String message) {
+        SendResponse sendResponse = telegramBot.execute(new SendMessage(chatId, message));
     }
 }
