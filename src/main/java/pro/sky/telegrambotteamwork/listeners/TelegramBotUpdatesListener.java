@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import pro.sky.telegrambotteamwork.model.User;
-import pro.sky.telegrambotteamwork.repositories.UserRepository;
+import pro.sky.telegrambotteamwork.repository.UserRepository;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -104,5 +104,6 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
     private void sendMessage(long chatId, String message) {
         SendResponse sendResponse = telegramBot.execute(new SendMessage(chatId, message));
+        logger.info("Отправка сообщения: {}", message);
     }
 }
