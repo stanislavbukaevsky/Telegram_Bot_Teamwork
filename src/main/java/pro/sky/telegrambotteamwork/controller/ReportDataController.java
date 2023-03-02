@@ -71,6 +71,7 @@ public class ReportDataController {
                                     @RequestParam Long chat_Id,
                                     @Parameter(description = "Ваше сообщение")
                                     @RequestParam String message) {
+
         telegramBotUpdatesListener.sendMessage(chat_Id, message);
     }
 
