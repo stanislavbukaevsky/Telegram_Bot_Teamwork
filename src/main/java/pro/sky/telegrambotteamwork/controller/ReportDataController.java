@@ -4,6 +4,7 @@ package pro.sky.telegrambotteamwork.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,10 +16,6 @@ import pro.sky.telegrambotteamwork.serviceImpl.ReportDataServiceImpl;
 
 import java.util.Collection;
 
-/**
- * @author OKargan
- * @date 28.02.2023 20:00
- */
 @RestController
 @RequestMapping("photoReports")
 public class ReportDataController {
@@ -27,7 +24,7 @@ public class ReportDataController {
     @Autowired
     private TelegramBotUpdatesListener telegramBotUpdatesListener;
 
-    private final String fileType = "image/jpeg";
+    private final String fileType = "image/png";
 
     public ReportDataController(ReportDataServiceImpl reportDataService) {
         this.reportDataService = reportDataService;
@@ -75,4 +72,5 @@ public class ReportDataController {
         telegramBotUpdatesListener.sendMessage(chat_Id, message);
     }
 
+    private int port;
 }

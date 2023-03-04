@@ -108,4 +108,5 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     public void sendMessage(long chatId, String message) {
         SendResponse sendResponse = telegramBot.execute(new SendMessage(chatId, message));
     }
+
 }
