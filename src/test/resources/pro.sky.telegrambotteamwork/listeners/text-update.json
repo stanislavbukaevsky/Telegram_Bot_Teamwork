@@ -1,7 +1,7 @@
 {
   "message": {
-    "from": {
-      "id": 123
+    "chat": {
+      "id": "123"
     },
     "text": "%command%"
   }
