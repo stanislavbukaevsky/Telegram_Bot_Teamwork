@@ -20,7 +20,6 @@ public class PetController {
 
     public PetController(PetService petService) {
         this.petService = petService;
-
     }
 
     @Operation(
