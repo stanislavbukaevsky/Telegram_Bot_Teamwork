@@ -42,7 +42,8 @@ public class ReportDataController {
         reportDataService.remove(id);
     }
 
-    @Operation(summary = "Просмотр всех отчетов", description = "Просмотр всех отчетов, либо всех отчетов определенного пользователя по chat_id")
+    @Operation(summary = "Просмотр всех отчетов",
+            description = "Просмотр всех отчетов, либо всех отчетов определенного пользователя по chat_id")
     @GetMapping("getAll")
     public ResponseEntity<Collection<ReportData>> getAll() {
         return ResponseEntity.ok(reportDataService.getAll());
@@ -72,5 +73,5 @@ public class ReportDataController {
         telegramBotUpdatesListener.sendMessage(chat_Id, message);
     }
 
-    private int port;
+
 }
