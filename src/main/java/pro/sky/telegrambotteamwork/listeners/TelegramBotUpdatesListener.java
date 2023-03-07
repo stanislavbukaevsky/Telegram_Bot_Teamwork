@@ -227,4 +227,18 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         return update.callbackQuery().message() != null;
     }
 
+    /**
+     * Этот метод проверяет есть ли сообщение от пользователя, через нажатие кнопки
+     *
+     * @param update входящее обновление
+     * @return Возвращает true, если сообщение от пользователя, через нажатие кнопки
+     */
+    private boolean hasMessageCallbackQuery(Update update) {
+        return update.callbackQuery().message() != null;
+    }
+
+    public void sendMessage(Long chatId, String text) {
+        SendResponse response = telegramBot.execute(new SendMessage(chatId, text));
+    }
+
 }
