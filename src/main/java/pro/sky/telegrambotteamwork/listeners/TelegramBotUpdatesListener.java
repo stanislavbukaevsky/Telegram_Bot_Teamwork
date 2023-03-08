@@ -13,11 +13,9 @@ import com.pengrad.telegrambot.response.SendResponse;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pro.sky.telegrambotteamwork.model.User;
 import pro.sky.telegrambotteamwork.repository.UserRepository;
-
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
@@ -218,16 +216,6 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
      */
     private boolean hasText(Update update) {
         return update.message().text() != null;
-    }
-
-    /**
-     * Этот метод проверяет есть ли сообщение от пользователя, через нажатие кнопки
-     *
-     * @param update входящее обновление
-     * @return Возвращает true, если сообщение от пользователя, через нажатие кнопки
-     */
-    private boolean hasMessageCallbackQuery(Update update) {
-        return update.callbackQuery().message() != null;
     }
 
     /**
