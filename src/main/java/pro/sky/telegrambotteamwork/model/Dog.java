@@ -1,14 +1,13 @@
 package pro.sky.telegrambotteamwork.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
+/**
+ * Класс с сущностью питомца - собаки
+ */
+@Data
 @Table(name = "dogs")
 @Entity
 public class Dog {
