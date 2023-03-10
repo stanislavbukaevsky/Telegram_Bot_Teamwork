@@ -1,5 +1,6 @@
 package pro.sky.telegrambotteamwork.service;
 
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -9,13 +10,10 @@ import pro.sky.telegrambotteamwork.repository.PetRepository;
 import java.util.Collection;
 
 @Service
+@AllArgsConstructor
 public class PetService {
     private final Logger logger = LoggerFactory.getLogger(PetService.class);
     private final PetRepository petRepository;
-
-    public PetService(PetRepository petRepository) {
-        this.petRepository = petRepository;
-    }
 
     public Pet addNew(Pet pet) {
         logger.info("Was invoked method for add new pet");

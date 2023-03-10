@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import pro.sky.telegrambotteamwork.model.User;
 import pro.sky.telegrambotteamwork.service.CheckService;
 import pro.sky.telegrambotteamwork.service.MenuService;
 import pro.sky.telegrambotteamwork.service.UserService;
@@ -57,6 +58,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             updates.forEach(update -> {
                 logger.info("Запрос от пользователя: {}", update);
                 Message messageUser = update.message();
+                User user = new User();
 
                 if (checkService.hasMessage(update)) {
                     if (checkService.hasText(update)) {

@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +16,9 @@ import pro.sky.telegrambotteamwork.service.PetService;
 @RestController
 @RequestMapping("api/pet")
 @Tag(name = "Работа с животными", description = "Позволяет управлять населением питомника")
+@AllArgsConstructor
 public class PetController {
     private final PetService petService;
-
-    public PetController(PetService petService) {
-        this.petService = petService;
-    }
 
     @Operation(
             summary = "Приём животного в приют",
