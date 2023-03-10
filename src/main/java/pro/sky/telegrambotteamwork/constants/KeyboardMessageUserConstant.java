@@ -11,11 +11,11 @@ public class KeyboardMessageUserConstant {
     public static final String ANOTHER_PET = "Выбрать другого питомца";
     // Кнопки, после выбора питомца
     public static final String INFORMATION_ABOUT_THE_SHELTER_DOG = "Узнать информацию о приюте собак";
-    public static final String TAKE_A_PET_FROM_A_SHELTER_DOG = "Как взять собаку из приюта";
+    public static final String TAKE_A_FROM_A_SHELTER_DOG = "Как взять собаку из приюта";
     public static final String PET_REPORT_DOG = "Прислать отчет о собаке";
     public static final String CALL_A_VOLUNTEER_DOG = "Позвать волонтера для собак";
     public static final String INFORMATION_ABOUT_THE_SHELTER_CAT = "Узнать информацию о приюте кошек";
-    public static final String TAKE_A_PET_FROM_A_SHELTER_CAT = "Как взять кошку из приюта";
+    public static final String TAKE_A_FROM_A_SHELTER_CAT = "Как взять кошку из приюта";
     public static final String PET_REPORT_CAT = "Прислать отчет о кошке";
     public static final String CALL_A_VOLUNTEER_CAT = "Позвать волонтера для кошек";
     // Кнопки об информации о питомнике
@@ -26,10 +26,16 @@ public class KeyboardMessageUserConstant {
     public static final String REQUISITES = "Реквизиты";
     public static final String CONTACTS = "Контакты";
     // Кнопки о том, как взять питомца из приюта
-    public static final String ARE_PETS_IN_SHELTER_HEALTHY = "Здоровье животного в питомнике";
-    public static final String YOU_DECIDED_TO_TAKE_PET = "Вы решились взять животное?";
-    public static final String IF_YOU_ALREADY_HAVE_PET = "Если у вас уже есть питомец";
-    public static final String PET_TRANSFER_PROCEDURE = "Процедура передачи животного";
+    public static final String ARE_DOGS_IN_SHELTER_HEALTHY = "Здоровье собаки в питомнике";
+    public static final String ARE_CATS_IN_SHELTER_HEALTHY = "Здоровье кошки в питомнике";
+    public static final String YOU_DECIDED_TO_TAKE_DOG = "Вы решились взять собаку?";
+    public static final String YOU_DECIDED_TO_TAKE_CAT = "Вы решились взять кошку?";
+    public static final String IF_YOU_ALREADY_HAVE_DOG = "Если у вас уже есть собака";
+    public static final String IF_YOU_ALREADY_HAVE_CAT = "Если у вас уже есть кошка";
+    public static final String DOG_TRANSFER_PROCEDURE = "Процедура передачи собаки";
+    public static final String CAT_TRANSFER_PROCEDURE = "Процедура передачи кошки";
+    public static final String DOG_CATALOG = "Каталог собак";
+    public static final String CAT_CATALOG = "Каталог кошек";
     // Кнопки об отчете о питомце
     public static final String INFORMATION_ABOUT_REPORT = "Информация об отчете";
     public static final String SEND_REPORT = "Прислать отчет";
@@ -47,13 +53,13 @@ public class KeyboardMessageUserConstant {
     );
     public static final List<String> MAIN_DOG_MENU = List.of(
             INFORMATION_ABOUT_THE_SHELTER_DOG,
-            TAKE_A_PET_FROM_A_SHELTER_DOG,
+            TAKE_A_FROM_A_SHELTER_DOG,
             PET_REPORT_DOG,
             CALL_A_VOLUNTEER_DOG
     );
     public static final List<String> MAIN_CAT_MENU = List.of(
             INFORMATION_ABOUT_THE_SHELTER_CAT,
-            TAKE_A_PET_FROM_A_SHELTER_CAT,
+            TAKE_A_FROM_A_SHELTER_CAT,
             PET_REPORT_CAT,
             CALL_A_VOLUNTEER_CAT
     );
@@ -65,11 +71,19 @@ public class KeyboardMessageUserConstant {
             REQUISITES,
             CONTACTS
     );
-    public static final List<String> TAKE_A_PET_FROM_A_SHELTER_MENU = List.of(
-            ARE_PETS_IN_SHELTER_HEALTHY,
-            YOU_DECIDED_TO_TAKE_PET,
-            IF_YOU_ALREADY_HAVE_PET,
-            PET_TRANSFER_PROCEDURE
+    public static final List<String> TAKE_A_FROM_A_SHELTER_DOG_MENU = List.of(
+            ARE_DOGS_IN_SHELTER_HEALTHY,
+            YOU_DECIDED_TO_TAKE_DOG,
+            IF_YOU_ALREADY_HAVE_DOG,
+            DOG_TRANSFER_PROCEDURE,
+            DOG_CATALOG
+    );
+    public static final List<String> TAKE_A_FROM_A_SHELTER_CAT_MENU = List.of(
+            ARE_CATS_IN_SHELTER_HEALTHY,
+            YOU_DECIDED_TO_TAKE_CAT,
+            IF_YOU_ALREADY_HAVE_CAT,
+            CAT_TRANSFER_PROCEDURE,
+            CAT_CATALOG
     );
     public static final List<String> PET_REPORT_MENU = List.of(
             INFORMATION_ABOUT_REPORT,

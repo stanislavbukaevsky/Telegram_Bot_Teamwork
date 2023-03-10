@@ -41,19 +41,12 @@ public class UserService {
             Long userId = update.message().from().id();
             Long chatId = update.message().chat().id();
             LocalDateTime dateTime = LocalDateTime.now();
-//            List<User> usersIds = userRepository.findAll()
-//                    .stream()
-//                    .filter(id -> id.getUserId().equals(userId))
-//                    .collect(Collectors.toList());
             Collection<User> usersUserId = userRepository.findUserByUserId(userId);
+
             for (User userUserId : usersUserId) {
                 telegramBot.execute(new SendMessage(userUserId.getChatId(), YOU_ARE_SUBSCRIBED));
             }
-//            if (!(usersIds.equals(userId))) {
-//                telegramBot.execute(new SendMessage(chatId, YOU_ARE_SUBSCRIBED));
-//                return;
-//            }
-//            if (usersIds.equals(userId)) {
+
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setUserName(userName);
