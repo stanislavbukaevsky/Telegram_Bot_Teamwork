@@ -18,14 +18,23 @@ public class PetService {
         this.petRepository = petRepository;
     }
 
-    public Pet addNew(Pet pet) {
+    /**
+     * Создание записи о животном в БД
+     * @param pet Данные о животном
+     */
+    public void addNew(Pet pet) {
         logger.info("Was invoked method for add new pet");
-        return petRepository.save(pet);
+        petRepository.save(pet);
     }
 
-    public void updatePet(Long id, Pet pet) {
+    /**
+     * Метод для изменения информации о животном
+     * @param petId Идентификатор животного
+     * @param pet Новые данные
+     */
+    public void updatePet(Long petId, Pet pet) {
         logger.info("Was invoked method for update pet");
-        Pet updatedPet = findPetById(id);
+        Pet updatedPet = findPetById(petId);
         updatedPet.setPet_name(pet.getPet_name());
         updatedPet.setBreed(pet.getBreed());
         updatedPet.setDescription(pet.getDescription());
@@ -33,18 +42,30 @@ public class PetService {
         petRepository.save(updatedPet);
     }
 
-    public Pet findPetById(Long id) {
+    /**
+     * Поиск животного в БД по его id
+     * @param petId Идентификатор животного
+     * @return Объект {@link Pet} с указанным id, либо исключение {@link NoEntityException}
+     */
+    public Pet findPetById(Long petId) {
         logger.info("Was invoked method for find pet by id");
-        return petRepository.findById(id).orElseThrow(() -> new NoEntityException("Животное с id" + id + " не найдено"));
+        return petRepository.findById(petId).orElseThrow(() -> new NoEntityException("Животное с id" + petId + " не найдено"));
     }
 
+    /**
+     * Выводит список всех животных
+     * @return возвращает {@link Collection<Pet>}  из всех животных приюта
+     */
     public Collection<Pet> findAll() {
         logger.info("Was invoked method for find all pets");
         return petRepository.findAll();
     }
 
-    public void deletePet(Long id) {
-
+    /**
+     * Удаление записи о животном из БД
+     * @param petId Идентификатор животного
+     */
+    public void deletePet(Long petId) {
+        petRepository.deleteById(petId);
     }
-
 }

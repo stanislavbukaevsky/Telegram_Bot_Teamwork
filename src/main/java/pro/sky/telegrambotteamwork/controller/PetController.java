@@ -8,10 +8,13 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pro.sky.telegrambotteamwork.model.Pet;
 import pro.sky.telegrambotteamwork.service.PetService;
 
+import java.util.Collection;
+import java.util.Collections;
 
 @RestController
 @RequestMapping("api/pet")
@@ -57,19 +60,47 @@ public class PetController {
         return HttpStatus.OK;
     }
 
-//    @Operation(
-//            summary = "Поиск животного",
-//            description = "Позволяет найти животного по его id")
-//    @ApiResponse(
-//            responseCode = "200",
-//            content = @Content(
-//                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-//                    schema = @Schema(implementation = Pet.class))
-//    )
-//    @GetMapping("/{petId}")
-//    public HttpStatus getPet(@PathVariable ("petId") Long petId) {
-//
-//
-//        return HttpStatus.OK;
-//    }
+    @Operation(
+            summary = "Поиск животного",
+            description = "Позволяет найти животного по его id")
+    @ApiResponse(
+            responseCode = "200",
+            content = @Content(
+                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                    schema = @Schema(implementation = Pet.class))
+    )
+    @GetMapping("/{petId}")
+    public ResponseEntity<Pet> getPet(@PathVariable("petId") Long petId) {
+        return new ResponseEntity<>(petService.findPetById(petId), HttpStatus.OK);
+    }
+
+    @Operation(
+            summary = "Все животные в приюте",
+            description = "Выводит список всех животных")
+    @ApiResponse(
+            responseCode = "200",
+            content = @Content(
+                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                    schema = @Schema(implementation = Pet.class))
+    )
+    @GetMapping("/all")
+    public ResponseEntity<Collection<Pet>> getAllPets() {
+        return new ResponseEntity<>(Collections.unmodifiableCollection(petService.findAll()), HttpStatus.OK);
+    }
+
+    @Operation(
+            summary = "Удаление записи о животном",
+            description = "Удаляет запись о животном из БД")
+    @ApiResponse(
+            responseCode = "200",
+            content = @Content(
+                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                    schema = @Schema(implementation = Pet.class))
+    )
+    @DeleteMapping("/{petId}")
+    public ResponseEntity<Pet> deleteTodo(@PathVariable("petId") Long petId) {
+        petService.deletePet(petId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }
