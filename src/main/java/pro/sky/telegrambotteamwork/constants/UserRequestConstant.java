@@ -35,8 +35,8 @@ public class UserRequestConstant {
 
     public static final String ABOUT_OUR_NURSERY = "О нашем питомнике";
     public static final String AMBULANCE_FOR_ANIMALS = "Скорая помощь для животных";
-    public static final String INSTRUCTIONS_FOR_CALLING_AN_AMBULANCE = "Инструкция по вызову скорой помощи";
-    public static final String REHABILITATION_FOR_SPECIAL_ANIMALS = "Реабилитация для особенных животных";
+    public static final String INSTRUCTIONS_FOR_CALLING_AN_AMBULANCE = "Скорой помощь для питомца";
+    public static final String REHABILITATION_FOR_SPECIAL_ANIMALS = "Реабилитация для питомца";
     public static final String REQUISITES = "Реквизиты";
     public static final String CONTACTS = "Контакты";
     public static final List<String> MAIN_MENU = List.of(
