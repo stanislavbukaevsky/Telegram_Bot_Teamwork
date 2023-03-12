@@ -1,7 +1,9 @@
 package pro.sky.telegrambotteamwork.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -11,6 +13,8 @@ import javax.persistence.*;
 @Data
 @Table(name = "pet")
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Pet {
 
     @Id
@@ -20,7 +24,7 @@ public class Pet {
     private Long id;
     @Schema(description = "Кличка", example = "Бобик")
     @Column(name = "pet_name")
-    private String pet_name;
+    private String petName;
     @Schema(description = "Порода", example = "Колли")
     @Column(name = "breed")
     private String breed;
