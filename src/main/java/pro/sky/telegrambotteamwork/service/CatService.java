@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import pro.sky.telegrambotteamwork.model.Cat;
 import pro.sky.telegrambotteamwork.repository.CatRepository;
 
-import java.util.List;
 
 /**
  * Сервис-класс для манипуляций с питомцем - кошкой
@@ -37,6 +36,9 @@ public class CatService {
      */
     public Cat updateCat(Cat cat) {
         logger.info("Вызван метод редактирования кошки: {}", cat);
+        if (catRepository.findById(cat.getId()).orElse(null) == null) {
+            return null;
+        }
         return catRepository.save(cat);
     }
 
@@ -45,9 +47,13 @@ public class CatService {
      *
      * @return Возвращает список всех найденных кошек
      */
-    public List<Cat> findCat() {
+    public Cat findCat(Long id) {
         logger.info("Вызван метод поиска всех кошек");
-        return catRepository.findAll();
+        Cat cat = catRepository.findById(id).orElse(null);
+        if (cat == null) {
+            throw new NullPointerException();
+        }
+        return cat;
     }
 
     /**

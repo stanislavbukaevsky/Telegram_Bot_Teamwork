@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 import pro.sky.telegrambotteamwork.model.Dog;
 import pro.sky.telegrambotteamwork.repository.DogRepository;
 
-import java.util.List;
-
 /**
  * Сервис-класс для манипуляций с питомцем - собакой
  */
@@ -37,6 +35,9 @@ public class DogService {
      */
     public Dog updateDog(Dog dog) {
         logger.info("Вызван метод редактирования собаки: {}", dog);
+        if (dogRepository.findById(dog.getId()).orElse(null) == null) {
+            return null;
+        }
         return dogRepository.save(dog);
     }
 
@@ -45,15 +46,20 @@ public class DogService {
      *
      * @return Возвращает список всех найденных собак
      */
-    public List<Dog> findDog() {
+    public Dog findDog(Long id) {
         logger.info("Вызван метод поиска всех собак");
-        return dogRepository.findAll();
+        Dog dog = dogRepository.findById(id).orElse(null);
+        if (dog == null) {
+            throw new NullPointerException();
+        }
+        return dog;
     }
 
     /**
      * Метод удаления собаки из базы данных
      *
      * @param id идентификатор собаки
+     * @return
      */
     public void deleteDog(Long id) {
         logger.info("Вызван метод удаления собаки по id: {}", id);

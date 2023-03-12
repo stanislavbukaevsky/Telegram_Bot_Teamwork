@@ -1,6 +1,8 @@
 package pro.sky.telegrambotteamwork.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -10,6 +12,8 @@ import javax.persistence.*;
 @Data
 @Table(name = "cats")
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Cat {
 
     @Id
