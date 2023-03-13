@@ -45,10 +45,11 @@ public class CatService {
     /**
      * Метод поиска кошки в базе данных
      *
-     * @return Возвращает список всех найденных кошек
+     * @param id идентификатор искомой кошки
+     * @return Возвращает найденую кошку
      */
     public Cat findCat(Long id) {
-        logger.info("Вызван метод поиска всех кошек");
+        logger.info("Вызван метод поиска кошки по id {}", id);
         Cat cat = catRepository.findById(id).orElse(null);
         if (cat == null) {
             throw new NullPointerException();

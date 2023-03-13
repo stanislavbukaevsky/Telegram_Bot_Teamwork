@@ -44,10 +44,11 @@ public class DogService {
     /**
      * Метод поиска собаки в базе данных
      *
-     * @return Возвращает список всех найденных собак
+     * @param id идентификатор искомой собаки
+     * @return Возвращает найденую собаку
      */
     public Dog findDog(Long id) {
-        logger.info("Вызван метод поиска всех собак");
+        logger.info("Вызван метод поиска собаки по id {}", id);
         Dog dog = dogRepository.findById(id).orElse(null);
         if (dog == null) {
             throw new NullPointerException();
@@ -59,7 +60,6 @@ public class DogService {
      * Метод удаления собаки из базы данных
      *
      * @param id идентификатор собаки
-     * @return
      */
     public void deleteDog(Long id) {
         logger.info("Вызван метод удаления собаки по id: {}", id);

@@ -31,8 +31,9 @@ public class UserService {
      *
      * @param user   сущность пользователя ботом
      * @param update входящее обновление
+     * @return Возвращает сохраненного пользователя
      */
-    public void saveUser(User user, Update update) {
+    public User saveUser(User user, Update update) {
         if (update.message().contact() != null) {
             String firstName = update.message().contact().firstName();
             String lastName = update.message().contact().lastName();
@@ -57,8 +58,18 @@ public class UserService {
             userRepository.save(user);
             telegramBot.execute(new SendMessage(chatId, YOU_HAVE_SUBSCRIBED));
             logger.info("Ползователь сохранен в базу данных: {}", user);
-//            }
         }
+        return userRepository.save(user);
+    }
+
+    /**
+     * Метод, добавляющий пользователя в базу данных
+     *
+     * @param user сущность пользователя ботом
+     * @return Возвращает сохраненного пользователя
+     */
+    public User addUser(User user) {
+        return userRepository.save(user);
     }
 
     /**
@@ -66,8 +77,9 @@ public class UserService {
      *
      * @param user   сущность пользователя ботом
      * @param update входящее обновление
+     * @return Возвращает измененного пользователя
      */
-    public void changeUser(User user, Update update) {
+    public User changeUser(User user, Update update) {
         Long userId = update.message().from().id();
         LocalDateTime dateTime = LocalDateTime.now();
         Collection<User> usersUserId = userRepository.findUserByUserId(userId);
@@ -79,6 +91,36 @@ public class UserService {
             logger.info("Пользователь переименован на волонтера: {}", user);
         }
         logger.info("Такого пользователя не существует");
+        return user;
+    }
+
+    /**
+     * Метод, который редактируект пользователя
+     *
+     * @param user сущность пользователя ботом
+     * @return Возвращает измененного пользователя
+     */
+    public User updateUser(User user) {
+        logger.info("Вызван метод редактирования пользователя: {}", user);
+        if (userRepository.findById(user.getId()).orElse(null) == null) {
+            return null;
+        }
+        return userRepository.save(user);
+    }
+
+    /**
+     * Метод поиска пользователя в базе данных
+     *
+     * @param id идентификатор искомого пользователя
+     * @return Возвращает найденого пользователя
+     */
+    public User findUser(Long id) {
+        logger.info("Вызван метод поиска пользователя по id {}", id);
+        User user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            throw new NullPointerException();
+        }
+        return user;
     }
 
 }

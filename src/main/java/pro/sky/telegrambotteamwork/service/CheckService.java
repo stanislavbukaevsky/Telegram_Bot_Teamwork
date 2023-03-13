@@ -5,6 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+/**
+ * Этот класс для проверки запросов от пользователя
+ */
 @Service
 public class CheckService {
     private final Logger logger = LoggerFactory.getLogger(CheckService.class);
